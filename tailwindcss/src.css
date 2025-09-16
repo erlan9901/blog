@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+    html {
+        scrollbar-gutter: stable overlay;
+    }
+
+    body {
+        @apply bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+    }
+
+    .dark {
+        color-scheme: dark;
+    }
+}
+
+@layer components {
+    .lit-tag {
+        @apply w-fit cursor-pointer rounded-2xl px-2.5 py-1 text-center text-[0.675rem];
+    }
+}

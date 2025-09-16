@@ -1,0 +1,119 @@
+@using System.IO
+@using Myblog.Helpers
+@inherits Statiq.Razor.StatiqRazorPage<dynamic>
+@{
+  var isIndex = false;
+  if (Document != null && Document.Source != null)
+  {
+    var sourcePath = Document.Source.ToString();
+    var filenameNoExt = System.IO.Path.GetFileNameWithoutExtension(sourcePath);
+    isIndex = string.Equals(filenameNoExt, "index", StringComparison.OrdinalIgnoreCase);
+  }
+}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewBag.Title</title>
+  <link rel="stylesheet" href="@IExecutionContext.Current.GetLink("/assets/css/site.css")">
+</head>
+<body>
+  <header class="fixed top-0 w-full bg-white dark:bg-transparent dark:backdrop-blur-sm shadow text-gray-600 dark:text-gray-300 body-font max-h-16 md:max-h-20">
+    <div class="container mx-auto flex flex-wrap p-3 flex-row items-center justify-between">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-0">
+        <svg class="icon text-indigo-500 dark:text-indigo-600" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+          <path d="M511.228735 511.267568m-511.228735 0a511.228735 511.228735 0 1 0 1022.457471 0 511.228735 511.228735 0 1 0-1022.457471 0Z" fill="currentColor"></path>
+          <path d="M874.256 151.19592c199.648599 199.657229 199.663701 523.355389 0 723.027719-199.648599 199.648599-523.37912 199.657229-723.034192 0L874.256 151.19592z" fill="currentColor"></path>
+          <path d="M1004.426058 646.022067L637.660048 279.273316l-74.718826 74.727455-205.05716-28.818331 42.26746 191.599401-147.362248 147.362249 51.800939 51.800939-12.778183 12.778183 288.938394 288.947024c204.474667-27.802203 370.429248-176.424364 423.675634-371.648169z" fill="currentColor"></path>
+          <path d="M617.270615 781.960969c95.708012 0 173.453647-77.963531 173.99515-173.147298l1.074377-140.145801-1.607251-7.628508-4.59307-9.589571-7.781683-6.021257c-10.098713-7.911126-61.278326 0.532874-75.057535-11.971322-9.768633-8.927254-11.293903-25.064483-14.264621-46.925253-5.497014-42.347284-8.953142-44.56076-15.595726-58.905203-24.095818-50.985448-89.47533-89.298425-134.389901-94.586172h-121.667809c-95.723113 0-173.977891 78.084344-173.977891 173.445017V608.813671c0 95.18161 78.246148 173.147298 173.977891 173.147298h199.888069z m-197.672436-407.232056h96.450151c18.421899 0 33.340207 14.950669 33.340208 33.122312 0 18.098292-14.918308 33.178403-33.340208 33.178403h-96.450151c-18.41327 0-33.307846-15.080112-33.307847-33.178403 0.002157-18.171643 14.894577-33.122311 33.307847-33.122312z m-33.305689 231.510999c0-18.163013 14.894577-32.992868 33.307846-32.992868h195.991834c18.301086 0 33.154672 14.829855 33.154672 32.992868 0 17.936488-14.862216 32.999341-33.154672 32.999341h-195.991834c-18.415427 0-33.307846-15.062853-33.307846-32.999341z" fill="#FFFFFF"></path>
+        </svg>
+        <p class="ml-3 text-xl dark:text-white">BLOG</p>
+      </a>
+      <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 border-none md:border-solid md:border-l md:border-gray-400	flex flex-wrap items-center text-xs justify-center">
+        <span class="text-gray-500">欢迎来到我的个人博客</span>
+      </nav>
+      <button id="theme-toggle"
+              aria-pressed="false"
+              class="relative inline-flex items-center w-18 h-8 rounded-full p-1 bg-gray-200/50 transition-colors cursor-pointer ring-1 ring-indigo-200/80 focus:outline-none"
+              title="切换模式">
+        <svg id="theme-moon" class="icon absolute left-1 w-5 h-5 text-gray-700 dark:text-yellow-300 transition-opacity" viewBox="0 0 1024 1024" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M871.4 526c-51.8 95.7-153.1 160.8-269.6 160.8-169.2 0-306.3-137.2-306.3-306.3 0-84.7 34.4-161.4 90-216.8C249.4 215 152.6 346.4 152.6 500.4c0 198.8 161.2 359.9 360 359.9 190.1 0.1 345.7-147.4 358.8-334.3z" fill="#FFCD00"></path>
+        </svg>
+        <svg id="theme-sun" class="icon absolute right-1 w-5 h-5 text-yellow-400 transition-opacity" viewBox="0 0 1024 1024" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M897.7 544.7H756.2c-15 0-27.2-12.2-27.2-27.2v-10.9c0-15 12.2-27.2 27.2-27.2h141.5c15 0 27.2 12.2 27.2 27.2v10.9c0 15-12.2 27.2-27.2 27.2zM717.6 358.1c-10.6 10.6-27.9 10.6-38.5 0l-7.7-7.7c-10.6-10.6-10.6-27.9 0-38.5l100.1-100.1c10.6-10.6 27.9-10.6 38.5 0l7.7 7.7c10.6 10.6 10.6 27.9 0 38.5L717.6 358.1z m-199.4-52.9h-10.9c-15 0-27.2-12.2-27.2-27.2V136.4c0-15 12.2-27.2 27.2-27.2h10.9c15 0 27.2 12.2 27.2 27.2V278c0 15-12.1 27.2-27.2 27.2z m-172.4 52.9c-10.7 10.6-27.9 10.6-38.6 0L206.8 258c-10.6-10.6-10.6-27.9 0-38.5l7.7-7.7c10.7-10.6 27.9-10.6 38.6 0l100.4 100.1c10.6 10.6 10.7 27.8 0.1 38.4l-0.1 0.1-7.7 7.7z m-50.1 148.5v10.9c0 15-12.2 27.2-27.2 27.2H126.4c-15 0.1-27.3-12.1-27.3-27.1v-11c0-15 12.2-27.2 27.2-27.2h142.1c15.1-0.1 27.3 12 27.3 27.2 0-0.1 0-0.1 0 0z m11.5 159.3c10.7-10.6 27.9-10.6 38.6 0l7.7 7.7c10.6 10.6 10.7 27.8 0.1 38.4l-0.1 0.1-100.4 100.1c-10.7 10.6-27.9 10.6-38.6 0l-7.7-7.7c-10.6-10.6-10.7-27.8-0.1-38.4l0.1-0.1 100.4-100.1z m200.1 52.9h11.1c15 0 27.2 12.2 27.2 27.2v141.5c0 15-12.2 27.2-27.2 27.2h-11.1c-15 0-27.2-12.2-27.2-27.2V746c0-15 12.2-27.2 27.2-27.2z m172.5-52.9c10.7-10.6 27.9-10.6 38.6 0L818.8 766c10.6 10.6 10.6 27.9 0 38.5l-7.7 7.7c-10.7 10.6-27.9 10.6-38.6 0L672 712.1c-10.6-10.6-10.7-27.8-0.1-38.4l0.1-0.1 7.8-7.7zM343.3 512c0 93.2 75.5 168.8 168.7 168.8 93.2 0 168.8-75.5 168.8-168.7v-0.2c0-93.2-75.5-168.7-168.7-168.8S343.3 418.7 343.3 512c0-0.1 0 0 0 0z" fill="#ff7f50"></path>
+        </svg>
+        <span id="theme-knob" class="relative inline-block w-6 h-6 rounded-full bg-white transform transition-transform"></span>
+      </button>
+    </div>
+  </header>
+  <main class="w-full flex flex-row mt-20 justify-center items-start">
+    @if (isIndex)
+    {
+      @RenderBody()
+    }
+    else
+    {
+      <article class="prose lg:prose-lg max-w-none bg-white dark:bg-gray-800 px-16 py-20 dark:prose-invert mx-6 w-full md:w-3/5 rounded-lg shadow ring-1 ring-indigo-100/40">
+        @RenderBody()
+      </article>
+    }
+    <aside class="hidden md:flex flex-col gap-6 w-1/6 h-full justify-start items-center">
+      <div class="bg-white dark:bg-gray-800 shadow rounded-lg px-6 pt-8 pb-12">
+        <p class="text-gray-900 text-lg dark:text-gray-100 font-semibold mb-6">#&nbsp;文章标签</p>
+        <div class="w-full flex flex-row flex-wrap gap-2 justify-start">
+          @foreach (var tag in LayoutHelper.Tags)
+          {
+            <span class="lit-tag @tag.color">@tag.text</span>
+          }
+        </div>
+      </div>
+      <div class="w-full bg-white dark:bg-gray-800 shadow rounded-lg px-6 pt-8 pb-12 text-center">
+        <p class="text-gray-900 text-lg dark:text-gray-100 font-semibold">文章总数</p>
+        <div class="font-extrabold text-4xl flex justify-center items-center">
+          @OutputPages.Where(p => p.Source != null && p.Source.ToString().Contains("/posts")).Count()
+        </div>
+      </div>
+    </aside>
+  </main>
+  <script>
+    (function () {
+      const html = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const knob = document.getElementById('theme-knob');
+      const sun = document.getElementById('theme-sun');
+      const moon = document.getElementById('theme-moon');
+
+      function apply(isDark) {
+        if (isDark) {
+          html.classList.add('dark');
+          btn.setAttribute('aria-pressed','true');
+          knob.classList.add('translate-x-10');
+          sun.classList.add('opacity-0');
+          moon.classList.remove('opacity-0');
+          btn.classList.add('bg-gray-700');
+          btn.classList.remove('bg-gray-200/50');
+        } else {
+          html.classList.remove('dark');
+          btn.setAttribute('aria-pressed','false');
+          knob.classList.remove('translate-x-10');
+          sun.classList.remove('opacity-0');
+          moon.classList.add('opacity-0');
+          btn.classList.add('bg-gray-200/50');
+          btn.classList.remove('bg-gray-700');
+        }
+      }
+
+      const saved = localStorage.getItem('theme');
+      const initialDark = saved ? saved === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      apply(initialDark);
+
+      btn.addEventListener('click', () => {
+        const isDark = !document.documentElement.classList.contains('dark');
+        apply(isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    })();
+  </script>
+</body>
+</html>
