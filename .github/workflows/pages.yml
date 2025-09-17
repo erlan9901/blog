@@ -1,0 +1,77 @@
+name: Build and deploy to GitHub Pages (Statiq + Tailwind)
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build static blog site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # ---- TailwindCss Build ----
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'    # 例：Node 18；可改为 20/18 等
+          cache: 'npm'          # 缓存 node_modules（可选）
+
+      - name: Install npm packages
+        run: npm ci || npm install
+
+      - name: Ensure css output folder exists
+        run: mkdir -p input/assets/css
+
+      - name: Build tailwindcss
+        run: npm run build:css
+
+      # ---- Statiq Build ----
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore NuGet packages
+        run: dotnet restore
+
+      - name: Restore dotnet tools (if any)
+        run: dotnet tool restore || echo "no dotnet tools to restore"
+
+      - name: Build blog site with Statiq
+        run: dotnet run --configuration Release
+
+      - name: List output (for debugging)
+        run: |
+          echo "==== output tree ===="
+          ls -la
+          ls -la output || true
+          find output -maxdepth 2 -type f -print || true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output   # 如果构建输出不是 output/，把这里改成实际路径
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
