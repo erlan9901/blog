@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using Microsoft.IdentityModel.Protocols;
 using Statiq.App;
 using Statiq.Web;
-using YamlDotNet.Core.Tokens;
 namespace Myblog
 {
     public class Program
@@ -25,8 +24,6 @@ namespace Myblog
                     }
                     else
                         s.Add(Keys.LinkRoot, string.Empty);
-
-
                 })
                 .RunAsync();
     }
