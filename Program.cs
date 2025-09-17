@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.IdentityModel.Protocols;
 using Statiq.App;
 using Statiq.Web;
 using YamlDotNet.Core.Tokens;
@@ -12,12 +13,20 @@ namespace Myblog
                 .CreateWeb(args)
                 .ConfigureSettings(s =>
                 {
-                    var linkRoot = Environment.GetEnvironmentVariable("SITE_LINKROOT");
-                    if (!string.IsNullOrEmpty(linkRoot))
-                        s.Add(Keys.LinkRoot, "/myblog");
+                    var linkRootEnv = Environment.GetEnvironmentVariable("SITE_LINKROOT");
+                    if (!string.IsNullOrWhiteSpace(linkRootEnv))
+                    {
+                        var linkRoot = linkRootEnv.Trim();
+                        if (!linkRoot.StartsWith('/'))
+                            linkRoot = "/" + linkRoot;
+
+                        linkRoot = linkRoot.TrimEnd('/');
+                        s.Add(Keys.LinkRoot, linkRoot);
+                    }
                     else
-                        s.Add(Keys.LinkRoot, "");
-                    
+                        s.Add(Keys.LinkRoot, string.Empty);
+
+
                 })
                 .RunAsync();
     }

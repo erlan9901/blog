@@ -49,7 +49,7 @@ namespace Myblog.Helpers
 
             var link = ctx.GetLink(doc);
             if (!string.IsNullOrEmpty(link))
-                return link + ".html";
+                return link.TrimStart('/') + ".html";
             else
                 return "#";
         }
