@@ -49,7 +49,7 @@ jobs:
       - name: Build blog site with Statiq
         run: dotnet run --configuration Release
         env:
-          SITE_LINKROOT: "/myblog"
+          SITE_LINKROOT: "/blog"
 
       - name: List output (for debugging)
         run: |
