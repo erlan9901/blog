@@ -11,13 +11,16 @@ namespace Myblog.Helpers
 {
     public static class IndexHelper
     {
-        public static string GetTitle(IDocument doc)
+        public static string GetTitle(IDocument doc, int maxLength = 82)
         {
             var t = doc.GetString("Title");
+            string title;
             if (!string.IsNullOrWhiteSpace(t))
-                return t;
+                title = t;
             else
-                return Path.GetFileNameWithoutExtension(doc.Source.ToString());
+                title = Path.GetFileNameWithoutExtension(doc.Source.ToString());
+
+            return title.Substring(0, maxLength).TrimEnd() + "…";
         }
 
         public static (string text, bool isHtml) GetExcerpt(IDocument doc, int maxLength = 50)
