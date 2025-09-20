@@ -23,7 +23,7 @@ Date : 2025-6-20
 
 看了下异常信息，提示我在第2行位置1的地方多了一个无效字符，反复用不同编码方式打开都没有发现
 
-![image-20250920221732259](E:\CSharpProjects\Myblog\input\posts\images\读取App.config报错十六进制0x00是无效字符\image-20250920221732259.png)
+![image-20250920221732259](./images/image-20250920221732259.png)
 
 只好去谷歌找答案，发现将第一行的uft-8改为utf-16le
 
