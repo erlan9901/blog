@@ -20,7 +20,10 @@ namespace Myblog.Helpers
             else
                 title = Path.GetFileNameWithoutExtension(doc.Source.ToString());
 
-            return title.Substring(0, maxLength).TrimEnd() + "…";
+            if (title.Length > maxLength)
+                title = title.Substring(0, maxLength).TrimEnd() + "…";
+
+            return title;
         }
 
         public static (string text, bool isHtml) GetExcerpt(IDocument doc, int maxLength = 50)
