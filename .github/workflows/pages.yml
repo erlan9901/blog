@@ -22,8 +22,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'    # 例：Node 18；可改为 20/18 等
-          cache: 'npm'          # 缓存 node_modules（可选）
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install npm packages
         run: npm ci || npm install
@@ -61,7 +61,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: output   # 如果构建输出不是 output/，把这里改成实际路径
+          path: output
 
   deploy:
     name: Deploy to GitHub Pages
