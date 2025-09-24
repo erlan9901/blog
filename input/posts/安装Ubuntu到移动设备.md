@@ -2,6 +2,8 @@ Title : 将Ubuntu安装在移动设备并支持UEFI和BIOS双引导启动
 
 Date : 2023-6-10
 
+Tag : Linux
+
 ---
 
 ## 将Ubuntu安装在移动设备并支持UEFI和BIOS双引导启动

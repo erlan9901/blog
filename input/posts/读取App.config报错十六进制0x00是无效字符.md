@@ -2,6 +2,8 @@ Title : 读取App.config报错十六进制0x00是无效字符
 
 Date : 2025-6-20
 
+Tag : C# .NET
+
 ---
 
 ## 读取App.config报错System.Configuration.ConfigurationErrorsException
