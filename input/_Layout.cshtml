@@ -32,7 +32,8 @@
         <p class="ml-3 text-xl dark:text-white">BLOG</p>
       </a>
       <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 border-none md:border-solid md:border-l md:border-gray-400	flex flex-wrap items-center text-xs justify-center">
-        <span class="text-gray-500">欢迎来到我的个人博客</span>
+        <span class="text-gray-500">欢迎来到我的个人博客</span>&nbsp;&nbsp;
+        <span class="text-gray-500">我的个人邮箱：erlan9901@outlook.com</span>
       </nav>
       <button id="theme-toggle"
               aria-pressed="false"
@@ -48,7 +49,7 @@
       </button>
     </div>
   </header>
-  <main class="w-full flex flex-row mt-20 justify-center items-start">
+  <main class="w-full flex flex-row mt-20 mb-16 justify-center items-start">
     @if (isIndex)
     {
       @RenderBody()
@@ -74,7 +75,7 @@
           }
         </div>
       </div>
-      <div class="w-full bg-white dark:bg-gray-800 rounded-xl shadow px-6 pt-8 pb-12 text-center">
+      <div class="w-full bg-white dark:bg-gray-800 rounded-xl shadow px-6 pt-8 pb-12 mb-2 text-center">
         <p class="text-gray-900 text-lg dark:text-gray-100 font-semibold pb-2">文章总数</p>
         <div class="font-extrabold text-4xl text-indigo-600 dark:text-indigo-400">
           @OutputPages.Where(p => p.Source != null && p.Source.ToString().Contains("/posts")).Count()
