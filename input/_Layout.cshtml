@@ -22,22 +22,24 @@
 <body>
   <header class="fixed top-0 w-full bg-white dark:bg-transparent dark:backdrop-blur-sm shadow text-gray-600 dark:text-gray-300 body-font max-h-16 md:max-h-20 z-50">
     <div class="container mx-auto md:mx-[5vw] flex flex-wrap p-3 flex-row items-center justify-between">
-      <a href="@IExecutionContext.Current.GetLink("index.html")" class="flex title-font font-medium items-center text-gray-900 mb-0">
-        <svg class="icon text-indigo-500 dark:text-indigo-600" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
-          <path d="M511.228735 511.267568m-511.228735 0a511.228735 511.228735 0 1 0 1022.457471 0 511.228735 511.228735 0 1 0-1022.457471 0Z" fill="currentColor"></path>
-          <path d="M874.256 151.19592c199.648599 199.657229 199.663701 523.355389 0 723.027719-199.648599 199.648599-523.37912 199.657229-723.034192 0L874.256 151.19592z" fill="currentColor"></path>
-          <path d="M1004.426058 646.022067L637.660048 279.273316l-74.718826 74.727455-205.05716-28.818331 42.26746 191.599401-147.362248 147.362249 51.800939 51.800939-12.778183 12.778183 288.938394 288.947024c204.474667-27.802203 370.429248-176.424364 423.675634-371.648169z" fill="currentColor"></path>
-          <path d="M617.270615 781.960969c95.708012 0 173.453647-77.963531 173.99515-173.147298l1.074377-140.145801-1.607251-7.628508-4.59307-9.589571-7.781683-6.021257c-10.098713-7.911126-61.278326 0.532874-75.057535-11.971322-9.768633-8.927254-11.293903-25.064483-14.264621-46.925253-5.497014-42.347284-8.953142-44.56076-15.595726-58.905203-24.095818-50.985448-89.47533-89.298425-134.389901-94.586172h-121.667809c-95.723113 0-173.977891 78.084344-173.977891 173.445017V608.813671c0 95.18161 78.246148 173.147298 173.977891 173.147298h199.888069z m-197.672436-407.232056h96.450151c18.421899 0 33.340207 14.950669 33.340208 33.122312 0 18.098292-14.918308 33.178403-33.340208 33.178403h-96.450151c-18.41327 0-33.307846-15.080112-33.307847-33.178403 0.002157-18.171643 14.894577-33.122311 33.307847-33.122312z m-33.305689 231.510999c0-18.163013 14.894577-32.992868 33.307846-32.992868h195.991834c18.301086 0 33.154672 14.829855 33.154672 32.992868 0 17.936488-14.862216 32.999341-33.154672 32.999341h-195.991834c-18.415427 0-33.307846-15.062853-33.307846-32.999341z" fill="#FFFFFF"></path>
-        </svg>
-        <p class="ml-3 text-xl dark:text-white">BLOG</p>
-      </a>
-      <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 border-none md:border-solid md:border-l md:border-gray-400	flex flex-wrap items-center text-xs justify-center">
-        <span class="text-gray-500">欢迎来到我的个人博客</span>&nbsp;&nbsp;
-        <span class="text-gray-500">我的个人邮箱：erlan9901@outlook.com</span>
-      </nav>
+      <div class="flex flex-row gap-2">
+        <a href="@IExecutionContext.Current.GetLink("index.html")" class="flex title-font font-medium items-center text-gray-900 mb-0 scale-85 md:scale-100">
+          <svg class="icon text-indigo-500 dark:text-indigo-600" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+            <path d="M511.228735 511.267568m-511.228735 0a511.228735 511.228735 0 1 0 1022.457471 0 511.228735 511.228735 0 1 0-1022.457471 0Z" fill="currentColor"></path>
+            <path d="M874.256 151.19592c199.648599 199.657229 199.663701 523.355389 0 723.027719-199.648599 199.648599-523.37912 199.657229-723.034192 0L874.256 151.19592z" fill="currentColor"></path>
+            <path d="M1004.426058 646.022067L637.660048 279.273316l-74.718826 74.727455-205.05716-28.818331 42.26746 191.599401-147.362248 147.362249 51.800939 51.800939-12.778183 12.778183 288.938394 288.947024c204.474667-27.802203 370.429248-176.424364 423.675634-371.648169z" fill="currentColor"></path>
+            <path d="M617.270615 781.960969c95.708012 0 173.453647-77.963531 173.99515-173.147298l1.074377-140.145801-1.607251-7.628508-4.59307-9.589571-7.781683-6.021257c-10.098713-7.911126-61.278326 0.532874-75.057535-11.971322-9.768633-8.927254-11.293903-25.064483-14.264621-46.925253-5.497014-42.347284-8.953142-44.56076-15.595726-58.905203-24.095818-50.985448-89.47533-89.298425-134.389901-94.586172h-121.667809c-95.723113 0-173.977891 78.084344-173.977891 173.445017V608.813671c0 95.18161 78.246148 173.147298 173.977891 173.147298h199.888069z m-197.672436-407.232056h96.450151c18.421899 0 33.340207 14.950669 33.340208 33.122312 0 18.098292-14.918308 33.178403-33.340208 33.178403h-96.450151c-18.41327 0-33.307846-15.080112-33.307847-33.178403 0.002157-18.171643 14.894577-33.122311 33.307847-33.122312z m-33.305689 231.510999c0-18.163013 14.894577-32.992868 33.307846-32.992868h195.991834c18.301086 0 33.154672 14.829855 33.154672 32.992868 0 17.936488-14.862216 32.999341-33.154672 32.999341h-195.991834c-18.415427 0-33.307846-15.062853-33.307846-32.999341z" fill="#FFFFFF"></path>
+          </svg>
+          <p class="ml-3 text-xl dark:text-white">BLOG</p>
+        </a>
+        <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 border-none md:border-solid md:border-l md:border-gray-400	flex flex-wrap items-center text-xs justify-center">
+          <span class="text-gray-500">欢迎来到我的个人博客</span>&nbsp;&nbsp;
+          <span class="hidden md:inline text-gray-500">我的个人邮箱：erlan9901@outlook.com</span>
+        </nav>
+      </div>
       <button id="theme-toggle"
               aria-pressed="false"
-              class="relative inline-flex items-center w-18 h-8 rounded-full p-1 bg-gray-200/50 transition-colors cursor-pointer ring-1 ring-indigo-200/80 focus:outline-none"
+              class="relative inline-flex items-center w-18 h-8 rounded-full p-1 bg-gray-200/50 transition-colors cursor-pointer ring-1 ring-indigo-200/80 focus:outline-none scale-85 md:scale-100"
               title="切换模式">
         <svg id="theme-moon" class="icon absolute left-1 w-5 h-5 text-gray-700 dark:text-yellow-300 transition-opacity" viewBox="0 0 1024 1024" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M871.4 526c-51.8 95.7-153.1 160.8-269.6 160.8-169.2 0-306.3-137.2-306.3-306.3 0-84.7 34.4-161.4 90-216.8C249.4 215 152.6 346.4 152.6 500.4c0 198.8 161.2 359.9 360 359.9 190.1 0.1 345.7-147.4 358.8-334.3z" fill="#FFCD00"></path>
